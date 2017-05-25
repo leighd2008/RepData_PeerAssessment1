@@ -1,51 +1,15 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 
 
 ```r
 knitr::opts_chunk$set(echo = TRUE)
 
 library(plyr); library(dplyr); library(ggplot2); library(xtable); library(lubridate)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:plyr':
-## 
-##     arrange, count, desc, failwith, id, mutate, rename, summarise,
-##     summarize
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```
-## 
-## Attaching package: 'lubridate'
-```
-
-```
-## The following object is masked from 'package:plyr':
-## 
-##     here
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     date
 ```
 
 This assignment makes use of data from a personal activity monitoring device. This device collects data at 5 minute intervals through out the day. The data consists of two months of data from an anonymous individual collected during the months of October and November, 2012 and include the number of steps taken in 5 minute intervals each day.
@@ -128,7 +92,7 @@ g <- ggplot(StepsPerDay, aes(date, weight = total))
 g + geom_histogram(bins = 61, fill = "white", color = "black") + labs(y ="Total Steps", x ="Date", title = "Total Steps per Day from October 1, 2012 thru November 30, 2012")
 ```
 
-![](PA1_template_files/figure-html/mean steps per day-1.png)<!-- -->
+![plot of chunk mean steps per day](figure/mean steps per day-1.png)
   
 This table gives the mean and median of the total steps per day across the two month period.
 
@@ -138,7 +102,7 @@ print(xt, type = "html")
 ```
 
 <!-- html table generated in R 3.4.0 by xtable 1.8-2 package -->
-<!-- Thu May 25 18:26:09 2017 -->
+<!-- Thu May 25 19:03:26 2017 -->
 <table border=1>
 <caption align="bottom"> Step per Day </caption>
 <tr> <th>  </th> <th> Average </th> <th> Median </th>  </tr>
@@ -158,7 +122,7 @@ g <- ggplot(data =StepsPerInterval, aes(x=interval2, y=average))
 g + geom_line(group = 1) + scale_x_datetime(date_labels = "%H:%M") + labs(x = "Interval (HH:MM)", y = "Average Steps", title = "Variation in average steps through the day")
 ```
 
-![](PA1_template_files/figure-html/average daily activity pattern-1.png)<!-- -->
+![plot of chunk average daily activity pattern](figure/average daily activity pattern-1.png)
 
 ```r
 for(i in 1:nrow(StepsPerInterval)){
@@ -201,7 +165,7 @@ f <- ggplot(StepsPerDay2, aes(date, weight = total))
 f + geom_histogram(bins = 61, fill = "white", color = "black") + labs(y ="Total Steps", x ="Date", title = "Total Steps per Day October 1, 2012 thru November 30, 2012 with replacement of NAs")
 ```
 
-![](PA1_template_files/figure-html/days of the week-1.png)<!-- -->
+![plot of chunk days of the week](figure/days of the week-1.png)
 
 This table gives the mean and median of the total steps per day across the two month period.
 
@@ -212,7 +176,7 @@ print(xt, type = "html")
 ```
 
 <!-- html table generated in R 3.4.0 by xtable 1.8-2 package -->
-<!-- Thu May 25 18:26:11 2017 -->
+<!-- Thu May 25 19:03:27 2017 -->
 <table border=1>
 <caption align="bottom"> Step per Day </caption>
 <tr> <th>  </th> <th> Average </th> <th> Median </th>  </tr>
@@ -242,6 +206,6 @@ h <- ggplot(data =SummWeekDayEnd, aes(x=interval2, y=average))
 h + geom_line(group = 1) + scale_x_datetime(date_labels = "%H:%M") + labs(x = "Interval (HH:MM)", y = "Average Steps", title = "Variation in average steps through out Weekdays and Weekend days") + facet_grid(SummWeekDayEnd$weekday_end~.)
 ```
 
-![](PA1_template_files/figure-html/weekdays_weekends-1.png)<!-- -->
+![plot of chunk weekdays_weekends](figure/weekdays_weekends-1.png)
 
 
