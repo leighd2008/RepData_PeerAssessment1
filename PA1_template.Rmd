@@ -46,7 +46,7 @@ activity2$date <- as.Date(activity2$date)
 
 This histogram shows the total number of steps per day for the two month period. 
 
-```{r, mean steps per day}
+```{r, mean_steps_per_day}
 activity2 <- group_by(activity2, date)
 StepsPerDay <- summarise(activity2, total = sum(steps, na.rm = TRUE))
 g <- ggplot(StepsPerDay, aes(date, weight = total))
@@ -55,7 +55,7 @@ g + geom_histogram(bins = 61, fill = "white", color = "black") + labs(y ="Total 
 ```
   
 This table gives the mean and median of the total steps per day across the two month period.
-```{r, show mean and median table, results="asis"}
+```{r, show_mean_and_median_table, results="asis"}
 
 xt <- xtable(summarise(StepsPerDay, Average = mean(total), Median = median(total)), caption = "Step per Day")
 print(xt, type = "html")
@@ -66,7 +66,7 @@ print(xt, type = "html")
 ## What is the average daily activity pattern?
 
 This plot shows the average(across the two month time period) steps per 5 minute interval.
-```{r average daily activity pattern}
+```{r average_daily_activity_pattern}
 
 StepsPerInterval <- summarise(group_by(activity2, interval2, interval), average = mean(steps, na.rm = TRUE))
 with(StepsPerInterval, interval2 <- as.factor(interval2))
@@ -84,18 +84,18 @@ The interval with the max average number of steps is `r maxInterval`
 
 ## Imputing missing values
 
-```{r how many missing values}
+```{r how_many_missing_values}
 ## figure out where the na's occur Are the individual intervals, or complete days of missing values?
 missingData <- sum(is.na(activity2$steps))
 ```
 Note that there `r missingData` intervals where there are missing values (coded as NA).
-```{r location of missing values}
+```{r location_of_missing_values}
 sumImDa <- summarise(activity2, sumna = sum(is.na(steps)))
 uniqueSum <- unique(sumImDa$sumna)
 ```
 Broken down by date, there 2 unique values for the number of missing intervals: `r uniqueSum`. Since there are 288 intervals per day, the missing values represent complete days and not individual or small groups of intervals.The presence of missing days may introduce bias into some calculations or summaries of the data. Therefore, we will replace the missing values with the average total number of steps for the interval.
 
-```{r days of the week}
+```{r days_of_the_week}
 activity3 <- group_by(activity2, interval)
 sumtab <- summarise(activity3, average = mean(steps, na.rm = TRUE))
 activity3 <- merge(activity3, sumtab, by = "interval")
@@ -113,7 +113,7 @@ f + geom_histogram(bins = 61, fill = "white", color = "black") + labs(y ="Total 
 
 This table gives the mean and median of the total steps per day across the two month period.
 
-```{r, show mean and median table with replacement, results="asis"}
+```{r, show_mean_and_median_table_with_replacement, results="asis"}
 
 xt <- xtable(summarise(StepsPerDay2, Average = mean(total), Median = median(total)), caption = "Step per Day")
 print(xt, type = "html")

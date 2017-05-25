@@ -92,7 +92,7 @@ g <- ggplot(StepsPerDay, aes(date, weight = total))
 g + geom_histogram(bins = 61, fill = "white", color = "black") + labs(y ="Total Steps", x ="Date", title = "Total Steps per Day from October 1, 2012 thru November 30, 2012")
 ```
 
-![plot of chunk mean steps per day](figure/mean steps per day-1.png)
+![plot of chunk mean_steps_per_day](figure/mean_steps_per_day-1.png)
   
 This table gives the mean and median of the total steps per day across the two month period.
 
@@ -102,7 +102,7 @@ print(xt, type = "html")
 ```
 
 <!-- html table generated in R 3.4.0 by xtable 1.8-2 package -->
-<!-- Thu May 25 19:03:26 2017 -->
+<!-- Thu May 25 19:46:27 2017 -->
 <table border=1>
 <caption align="bottom"> Step per Day </caption>
 <tr> <th>  </th> <th> Average </th> <th> Median </th>  </tr>
@@ -122,7 +122,7 @@ g <- ggplot(data =StepsPerInterval, aes(x=interval2, y=average))
 g + geom_line(group = 1) + scale_x_datetime(date_labels = "%H:%M") + labs(x = "Interval (HH:MM)", y = "Average Steps", title = "Variation in average steps through the day")
 ```
 
-![plot of chunk average daily activity pattern](figure/average daily activity pattern-1.png)
+![plot of chunk average_daily_activity_pattern](figure/average_daily_activity_pattern-1.png)
 
 ```r
 for(i in 1:nrow(StepsPerInterval)){
@@ -165,7 +165,7 @@ f <- ggplot(StepsPerDay2, aes(date, weight = total))
 f + geom_histogram(bins = 61, fill = "white", color = "black") + labs(y ="Total Steps", x ="Date", title = "Total Steps per Day October 1, 2012 thru November 30, 2012 with replacement of NAs")
 ```
 
-![plot of chunk days of the week](figure/days of the week-1.png)
+![plot of chunk days_of_the_week](figure/days_of_the_week-1.png)
 
 This table gives the mean and median of the total steps per day across the two month period.
 
@@ -176,7 +176,7 @@ print(xt, type = "html")
 ```
 
 <!-- html table generated in R 3.4.0 by xtable 1.8-2 package -->
-<!-- Thu May 25 19:03:27 2017 -->
+<!-- Thu May 25 19:46:28 2017 -->
 <table border=1>
 <caption align="bottom"> Step per Day </caption>
 <tr> <th>  </th> <th> Average </th> <th> Median </th>  </tr>
